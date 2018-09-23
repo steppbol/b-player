@@ -1,8 +1,8 @@
 # Requirements Document
 ### 1\. Intoduction
-There are a lot of music players, but most of them significantly burden the system due to the large amount of resources, and this is perhaps one of the most important qualities.
+There are a lot of music players, but most of them significantly burden the system due to large amount of resources they use, which is probably one of the most essential qualities. 
 
-And what if you create a music player that will be lightly loaded with various skins and add-ins, and also play all the popular digital audio formats? The answer to this question is only this project - B-Player.
+So, why not create a music player which can be lightly loaded with various skins and add-ins, and which is able to play all the popular digital audio formats? The only one answer to this question is the following project - B-Player.
 
 ### 2\. User Requierements
 #### 2.1\. Software Interfaces
