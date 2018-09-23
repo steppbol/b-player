@@ -10,6 +10,7 @@ The project uses the Qt framework and does not interact with external systems an
 #### 2.2\. User Interfaces
 The GUI of the project is presented with the help of mocaps [main window](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/mockups/MainWindow.png) and [volume control method](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/mockups/ShowVolume.png).
 The main window requires a separate view:
+
 Button | Event
 --- | ---
 "Volume" | A scroll bar pops up, with which you can adjust the sound
