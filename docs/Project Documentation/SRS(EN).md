@@ -8,7 +8,7 @@ And what if you create a music player that will be lightly loaded with various s
 #### 2.1\. Software Interfaces
 The project uses the Qt framework and does not interact with external systems and services.
 #### 2.2\. User Interfaces
-The GUI of the project is presented with the help of mocaps [main window](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/mockups/MainWindow.png) and [volume control method](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/mockups/MainWindow.png).
+The GUI of the project is presented with the help of mocaps [main window](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/mockups/MainWindow.png) and [volume control method](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/mockups/ShowVolume.png).
 The main window requires a separate view:
 Button | Event
 --- | ---
@@ -36,7 +36,7 @@ Run the application on the following operating systems:
   4\. Reorder the playback of audio.
   5\. The ability to play an audio recording again, at the end of it.
   6\. The ability to rewind the audio.
-  7\. Ability to switch to the next or previous audio recording.
+  7\. The ability to switch to the next or previous audio recording.
 #### 3.2\. Non-Functional Requierements
 * mouse presence
 * presence of a sound reproduction system
