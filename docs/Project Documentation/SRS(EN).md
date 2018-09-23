@@ -1,47 +1,46 @@
-# Требования к проекту
-### 1\. Введение
-Сущетсвует множество музыкальных проигрывателей, но большенство из них значительно нагружают систему из-за большого потребления ресурсов, а это, пожалуй, одно из самых важных качеств. 
+# Requirements Document
+### 1\. Intoduction
+There are a lot of music players, but most of them significantly burden the system due to the large amount of resources, and this is perhaps one of the most important qualities.
 
-А что, если создать музыкальный проигрыватель, который будет несильно загружен различными скинами и дополнениями, а также воспроизводить все популярные цифровые аудиоформаты? Ответом на данный вопрос как раз служит данный проект - B-Player.
+And what if you create a music player that will be lightly loaded with various skins and add-ins, and also play all the popular digital audio formats? The answer to this question is only this project - B-Player.
 
-### 2\. Требования пользователя
-#### 2.1\. Программные интерфейсы
-Проект использует фреймворк Qt и не взаимодествует с внешними системами и сервисами.
-#### 2.2\. Интерфейс пользователя
-Графический интерфейс проекта представлен с помощью мокапов [главного окна](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/mockups/MainWindow.png) и [способа регулирования громкости](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/mockups/MainWindow.png).
-Отдельного рассмотрения требует главное окно:
-
-Клавиша | Реакция
+### 2\. User Requierements
+#### 2.1\. Software Interfaces
+The project uses the Qt framework and does not interact with external systems and services.
+#### 2.2\. User Interfaces
+The GUI of the project is presented with the help of mocaps [main window](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/mockups/MainWindow.png) and [volume control method](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/mockups/MainWindow.png).
+The main window requires a separate view:
+Button | Event
 --- | ---
-"Volume" | Выплывает полоса прокрутки, при помощи которой можно настроить звук
-"Play" | Начинается воспроизведение выбронной аудиозаписи
-"Stop" | Остновка вопроизведения аудиозаписии
-"Next" | Воспроизведение следующей аудиозаписи
-"Play" | Воспроизведение предыдущей аудиозаписи
-"Add" | Открывается проводник, через который можно выбрать аудиофайлы для воспроизведения
-"Remove" | Удаление выбранной аудиозаписи из плейлиста
-"Random" | Изменение порядка воспроизведения аудиозаписей
+"Volume" | A scroll bar pops up, with which you can adjust the sound
+"Play" | Playback of the selected
+"Stop" | Stop playing audio recordings
+"Next" | Play next audio file
+"Play" | Play a previous audio file
+"Add" | An explorer is opened, through which you can select audio files for playback
+"Remove" | Delete selected audio from playlist
+"Random" | Changing the order of audio playback
 
-#### 2.3\. Характеристики пользователей
-Данный проект расчитан на начинающего пользователя, которому нужен небольшой аудиопроигрыватель. Простой и интуитивный интерфейс не заставит долго разбираться, как работает программа.
-#### 2.4\. Предположения и зависимости
-При запуске данного проекта на ОС Linux необходимо использовать файлы с расширением ".wav", из-за того, что файлы с раширением ".mp3" не поддерживаются элементом QMediaPlayer фреймворка Qt.
-### 3\. Системные требоания
-Запуск и работа приложения на следующих операционных системах:
+#### 2.3\. User Characteristics
+This project is designed for a novice user who needs a small audio player. A simple and intuitive interface does not take long to understand how the program works.
+#### 2.4\. Assumptions and Dependencies
+When you run this project on Linux, you need to use files with the extension ".wav", because the files with the extension ".mp3" are not supported by the QMediaPlayer element of the Qt framework.
+### 3\. System Requierements
+Run the application on the following operating systems:
 * Windows
 * Linux
-#### 3.1\. Функциональные требования
-  1\. Добавление аудиофайлов в плейлист.
-  2\. Удаление аудиозаписи из плейлиста.
-  3\. Изменение громкости аудиозаписи, используемой в программе.
-  4\. Изменение порядка воспроизведение аудиозаписей.
-  5\. Возможность воспроизводить аудиозапись заново, при её окончании.
-  6\. Возможность перемотки аудиозаписи.
-  7\. Возможность переключения на следующую или предыдущую аудиозапись.
-#### 3.2\. Нефункциональные требования
-* наличие мыши
-* наличие системы воспроизведения звука
-##### 3.2.1\. Атрибуты качества
-Самым важным критерием данного приложения должна быть скорость реагирования на изменение состояния кнопки. То есть задержка между нажатием клавиши и началом воспроизведения музыкального файла (его остановкой) должна быть минимальна, и не уловима на слух.
-### 4\. Аналоги
-Данный проект является в каком-то роде упрощенным вариантом ["AIMP"](http://www.aimp.ru/) и ["JetAudio" компании "Cowon"](http://www.jetaudio.com/), который значительно упрощает использование.
+#### 3.1\. Functional Requierements
+  1\. Adding audio files to a playlist.
+  2\. Delete an audio from a playlist.
+  3\. Change the volume of the audio used in the program.
+  4\. Reorder the playback of audio.
+  5\. The ability to play an audio recording again, at the end of it.
+  6\. The ability to rewind the audio.
+  7\. Ability to switch to the next or previous audio recording.
+#### 3.2\. Non-Functional Requierements
+* mouse presence
+* presence of a sound reproduction system
+##### 3.2.1\. Software Quality Attributes
+The most important criterion for this application should be the responsiveness to the change in the state of the button. That is, the delay between pressing a key and starting the playback of a music file (by stopping it) should be minimal and not noticeable by ear.
+### 4\. Analogues
+This project is in some way a simplified version ["AIMP"](http://www.aimp.ru/) and ["JetAudio" company "Cowon"](http://www.jetaudio.com/), that greatly simplifies the use of.
