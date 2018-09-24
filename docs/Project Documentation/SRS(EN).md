@@ -31,17 +31,18 @@ Run the application on the following operating systems:
 * Windows
 * Linux
 #### 3.1\. Functional Requirements
-  1\. Adding audio files to a playlist.
-  2\. Delete an audio from a playlist.
-  3\. Change the volume of the audio used in the program.
-  4\. Reorder the playback of audio.
-  5\. The ability to play an audio recording again, at the end of it.
-  6\. The ability to rewind the audio.
-  7\. The ability to switch to the next or previous audio recording.
+The user has the following options:
+  1. Adding audio files to a playlist.
+  2. Delete an audio from a playlist.
+  3. Change the volume of the audio used in the program.
+  4. Reorder the playback of audio.
+  5. The ability to play an audio recording again, at the end of it.
+  6. The ability to rewind the audio.
+  7. The ability to switch to the next or previous audio recording.
 #### 3.2\. Non-Functional Requierements
 * mouse presence
 * presence of a sound reproduction system
-##### 3.2.1\. Software Quality Attributes
+  ##### 3.2.1\. Software Quality Attributes
 The most important criterion for this application should be the responsiveness to the change in the state of the button. That is, the delay between pressing a key and starting the playback of a music file (by stopping it) should be minimal and not noticeable by ear.
 ### 4\. Analogues
 This project is in some way a simplified version ["AIMP"](http://www.aimp.ru/) and ["JetAudio" company "Cowon"](http://www.jetaudio.com/), that greatly simplifies the use of.
