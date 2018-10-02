@@ -66,7 +66,7 @@ Ability to switch audio recording | The application should provide the ability t
 #### 3.2\. Non-Functional Requierements <a name="3.2"></a>
 ##### 3.2.1\. Software Quality Attributes <a name="3.2.1"></a>
 ##### 3.2.1.1 External Quality Criteria <a name="3.2.1.1"></a>
-Important external criteria of this application are: quick launch, low performance, namely the rapid addition of audio files to the playlist.
+Important external criteria for this application are: quick start, low resource consumption and high performance, namely the addition of audio files to the playlist.
 ##### 3.2.1.2 Internal Quality Criteria <a name="3.2.1.2"></a>
 Internal criteria are: Easy to use due to a minimal interface, fast response speed to change the state of the button, that is, the delay between pressing a key and starting the music file, Portability between Windows and Linux.
 ### 4\. Analogues <a name="4"></a>
