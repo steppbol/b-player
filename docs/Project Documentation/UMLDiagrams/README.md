@@ -29,3 +29,4 @@
 
 ### 6. Диаграмма прецедентов<a name="6"></a>
 Диаграмма прецедентов представляет собой следующую диаграмму: 
+![Use Case](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Use%20Case/UseCase.png)
