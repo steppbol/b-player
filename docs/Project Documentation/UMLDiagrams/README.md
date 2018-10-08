@@ -6,7 +6,7 @@
 5. [Диаграмма развёртывания](#5)
 6. [Диаграмма прецедентов](#6)
 
-### Глоссарий
+### [Глоссарий](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/Glossary.md)
 
 ### 1. Диаграмма активности<a name="1"></a>
 Диагаммы активности более подробно расписаны в следующем документе: [диаграммы активности](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/Activity/README.md)
