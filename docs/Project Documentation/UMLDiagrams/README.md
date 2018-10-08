@@ -9,7 +9,7 @@
 ### Глоссарий
 
 ### 1. Диаграмма активности<a name="1"></a>
-Диагаммы активности более подробно расписаны в следующем документе: Диаграммы активности
+Диагаммы активности более подробно расписаны в следующем документе: [диаграммы активности](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/Activity/README.md)
 
 ### 2. Диаграмма классов<a name="2"></a>
 Диаграмма классов представляет собой следующую диаграмму: 
@@ -22,6 +22,7 @@
   
 ### 3. Диаграмма последовательности<a name="3"></a>
 Диаграмма последовательности основного варианта использования представляет из себя следующую диаграмму:
+![Sequence Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Sequence/SequenceDiagram.png)
 
 ### 4. Диаграмма состояний<a name="4"></a>
 
