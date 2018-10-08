@@ -1,5 +1,8 @@
-# B-Player
-##### The current version of B-Player - 0.01
-B-Player is a desktop music player designed for listening to audio tracks.
-### Requirments: ([Ru](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/SRS.md)), ([En](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/SRS(EN).md))
-### UML Diagrams: ([Ru](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/README.md)), (En)
+# Глоссарий 
+
+|Термин|Определение|
+|:---|:---|
+|Пользователь|Человек, который использует данное приложение|
+|Плейлист|Список аудиофайлов, которые в данный момент хранятся а программе|
+|Аудиофайл|Файл, который находится у Вас на компьютере и который еще не добавлен в плейлист аудиоплеера, например файлы формата ".mp3", ".wav" и т.д.|
+|Аудиозапись|Аудиофайл, который Вы добавили в плейлист аудиоплеера и готовый к воспроизведению|
