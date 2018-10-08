@@ -1,29 +1,29 @@
 # Содержание
 1. [Добавление аудиофайла](#1)
 2. [Начало воспроизведения](#2)
-3. [Воспроизведение в произвольном порядке](#3)
+3. [Изменение порядка воспроизведения](#3)
 4. [Воспроизведение следующей аудиозаписи](#4)
 5. [Изменение громкости](#5)
 6. [Остановка воспроизведения](#6)
 7. [Удаление аудиозаписи](#7)
 
 ### 1. Добавление аудиофайла<a name="1"></a>
-![Добавление аудиофайла]()
+![Добавление аудиофайла](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Add.png)
 
 ### 2. Начало воспроизведения<a name="2"></a>
-![Начало воспроизведения]()
+![Начало воспроизведения](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Play.png)
   
-### 3. Воспроизведение в произвольном порядке<a name="3"></a>
-![Воспроизведение в произвольном порядке]()
+### 3. Изменение порядка воспроизведения<a name="3"></a>
+![Изменение порядка воспроизведения](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Random.png)
 
 ### 4. Воспроизведение следующей аудиозаписи<a name="4"></a>
-![Воспроизведение следующей аудиозаписи]()
+![Воспроизведение следующей аудиозаписи](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Next.png)
 
 ### 5. Изменение громкости<a name="5"></a>
-![Изменение громкости]()
+![Изменение громкости](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Volume.png)
 
 ### 6. Остановка воспроизведения<a name="6"></a>
-![Остановка воспроизведения]()
+![Остановка воспроизведения](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Stop.png)
 
 ### 7. Удаление аудиозаписи<a name="7"></a>
-![Удаление аудиозаписи]()
+![Удаление аудиозаписи](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Delete.png)
