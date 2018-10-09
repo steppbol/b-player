@@ -8,9 +8,11 @@
 7. [Удаление аудиозаписи](#7)
 
 ### 1. Добавление аудиофайла<a name="1"></a>
-![Добавление аудиофайла](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Add.png)
+При нажатии кнопки "Add" откроется окно проводника для выбора аудиофайлов для записи в плейлист. Необходимо выбрать аудиофайлы и нажать "OK". При нажатии "Cancel" аудиофайлы не добавятся в плейлист, а окно закроется.
+<align = "middle">![Добавление аудиофайла](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Add.png)
 
 ### 2. Начало воспроизведения<a name="2"></a>
+
 ![Начало воспроизведения](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Activity/Play.png)
   
 ### 3. Изменение порядка воспроизведения<a name="3"></a>
