@@ -107,6 +107,7 @@
 ![Sequence Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Sequence/SequenceDiagram.png)
 
 ### 4. Диаграмма состояний<a name="4"></a>
+Диагаммы состояний более подробно расписаны в следующем документе: [диаграммы состояний](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/State/README.md)
 
 ### 5. Диаграмма классов<a name="5"></a>
 Диаграмма классов представляет собой следующую диаграмму: 
