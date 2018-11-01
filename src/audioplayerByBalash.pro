@@ -45,4 +45,4 @@ FORMS += \
 RESOURCES += \
     buttons.qrc
 
-RC_ICONS = B.ico
+RC_ICONS = icon/B.ico

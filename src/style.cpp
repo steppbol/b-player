@@ -314,14 +314,12 @@ QString Style::getSliderStyleSheet()
 
          "QSlider::sub-page:horizontal {"
          "background:black;"
-         //"border: 1px solid #454545;"
          "height: 2px;"
          "border-radius: 6px;"
          "}"
 
          "QSlider::add-page:horizontal {"
          "background: #fff;"
-         //"border: 1px solid #454545;"
          "height: 2px;"
          "border-radius: 6px;"
          "}"
@@ -329,8 +327,6 @@ QString Style::getSliderStyleSheet()
          "QSlider::handle:horizontal {"
          "background: qlineargradient(x1:0, y1:0, x2:1, y2:1,"
              "stop:0 #eee, stop:1 #ccc);"
-         //"border: 1px solid qlineargradient(x1:0, y1:0, x2:1, y2:1,"
-         //"stop:0 #eee, stop:1 #ccc);"
          "width: 10px;"
          "height: 20px;"
          "margin-top: -4px;"
@@ -341,25 +337,20 @@ QString Style::getSliderStyleSheet()
          "QSlider::handle:horizontal:hover {"
          "background: qlineargradient(x1:0, y1:0, x2:1, y2:1,"
              "stop:0 #3580ff, stop:1 #3575ff);"
-         //"border: 1px solid qlineargradient(x1:0, y1:0, x2:1, y2:1,"
-         //"stop:0 #3580ff, stop:1 #3575ff);"
          "border-radius: 4px;"
          "}"
 
          "QSlider::handle:horizontal:disabled {"
          "background: #eee;"
-         //"border: 1px solid #aaa;"
          "border-radius: 4px;"
          "}"
 
          "QSlider::sub-page:horizontal:disabled {"
          "background: #bbb;"
-         //"border-color: #999;"
          "}"
 
          "QSlider::add-page:horizontal:disabled {"
          "background: #eee;"
-         //"border-color: #999;"
          "}";
 }
 

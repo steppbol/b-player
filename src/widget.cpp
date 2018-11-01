@@ -23,7 +23,6 @@ Widget::Widget(QWidget *parent) :
     ui->widgetInterface->layout()->setSpacing(0);
     ui->label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-
     /// Установка стилей для всех элементов
     ui->currentTrack->setStyleSheet("color:#c1c1c1;");
     ui->btn_close->setStyleSheet(Style::getCloseStyleSheet());
@@ -53,13 +52,11 @@ Widget::Widget(QWidget *parent) :
     ui->btn_stop->setToolTip("Stop");
     ui->btn_random->setToolTip("Type of payback");
 
-
     ui->btn_next->setCursor(Qt::PointingHandCursor);
     ui->btn_previous->setCursor(Qt::PointingHandCursor);
     ui->btn_stop->setCursor(Qt::PointingHandCursor);
     ui->btn_play->setCursor(Qt::PointingHandCursor);
     ui->btn_pause->setCursor(Qt::PointingHandCursor);
-
 
     m_playListModel = new QStandardItemModel(this);
     ui->playlistView->setModel(m_playListModel);
@@ -87,7 +84,6 @@ Widget::Widget(QWidget *parent) :
     connect(ui->btn_stop, &QToolButton::clicked, m_player, &QMediaPlayer::stop);
     connect(ui->btn_del, &QToolButton::clicked, m_player, &QMediaPlayer::stop);
 
-
     /// Устанавливаем громкость воспроизведения треков
     m_volumeButton = new VolumeButton(this);
     m_volumeButton->setToolTip(tr("Volume"));
@@ -96,12 +92,10 @@ Widget::Widget(QWidget *parent) :
     connect(m_volumeButton, &VolumeButton::volumeChanged, m_player, &QMediaPlayer::setVolume);
     ui->horizontalLayout_2->addWidget(m_volumeButton);
 
-
     ///Устанавливаем перемотку треков и время вопроизыведения
     connect(m_player, &QMediaPlayer::positionChanged, this, updatePosition);
     connect(m_player, &QMediaPlayer::durationChanged, this, updateDuration);
     connect(ui->positionSlider, &QAbstractSlider::valueChanged, this, &Widget::setPosition);
-
 
     /// коннекты для кнопок сворачивания/максимизации/минимизации/закрытия
     connect(ui->btn_minimize, &QToolButton::clicked, this, &QWidget::showMinimized);
@@ -192,13 +186,10 @@ void Widget::on_btn_del_clicked()
 void Widget::on_btn_random_clicked()
 {
     static int check=4;
-    if(check%2==0)
-    {
+    if(check%2==0) {
     ui->btn_random->setStyleSheet(Style::getSequentialStyleSheet());
     m_playlist->setPlaybackMode(QMediaPlaylist::Random);
-    }
-    else
-    {
+    } else {
     ui->btn_random->setStyleSheet(Style::getRandomStyleSheet());
     m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     }
@@ -313,8 +304,6 @@ Widget::MouseType Widget::checkResizableField(QMouseEvent *event)
     qreal width = this->width();            // А также ширину ...
     qreal height = this->height();          // ... и высоту окна
 
-
-
     // Определяем области, в которых может находиться курсор мыши
     // По ним будет определён статус клика);
     QRectF rectTop(x + 9, y, width - 18, 7);
@@ -322,7 +311,6 @@ Widget::MouseType Widget::checkResizableField(QMouseEvent *event)
     QRectF rectLeft(x, y + 9, 7, height - 18);
     QRectF rectRight(x + width - 7, y + 9, 7, height - 18);
     QRectF rectInterface(x + 9, y + 9, width - 18, height - 18);
-
 
     // И в зависимости от области, в которой находится курсор
     // устанавливаем внешний вид курсора и возвращаем его статус
@@ -338,7 +326,7 @@ Widget::MouseType Widget::checkResizableField(QMouseEvent *event)
     } else if (rectRight.contains(position)) {
         setCursor(Qt::SizeHorCursor);
         return Right;
-    } else if (rectInterface.contains(position)){
+    } else if (rectInterface.contains(position)) {
         setCursor(QCursor());
         return Move;
     } else {
@@ -409,7 +397,6 @@ void Widget::createThumbnailToolBar()
     connect(m_player, &QMediaPlayer::positionChanged, this, &Widget::updateThumbnailToolBar);
     connect(m_player, &QMediaPlayer::durationChanged, this, &Widget::updateThumbnailToolBar);
     connect(m_player, &QMediaPlayer::stateChanged, this, &Widget::updateThumbnailToolBar);
-
 }
 
 void Widget::updateThumbnailToolBar()
@@ -429,10 +416,11 @@ void Widget::updateThumbnailToolBar()
 
 void Widget::togglePlayback()
 {
-    if (m_player->state() == QMediaPlayer::PlayingState)
+    if (m_player->state() == QMediaPlayer::PlayingState) {
         m_player->pause();
-    else
+    } else {
         m_player->play();
+    }
 }
 
 void Widget::seekForward()
@@ -468,6 +456,7 @@ void Widget::updateDuration(qint64 duration)
 
 void Widget::setPosition(int position)
 {
-    if (qAbs(m_player->position() - position) > 99)
+    if (qAbs(m_player->position() - position) > 99) {
         m_player->setPosition(position);
+    }
 }
