@@ -33,7 +33,7 @@ This project is in some way a simplified version ["AIMP"](http://www.aimp.ru/) a
 #### 2.1\. Software Interfaces <a name="2.1"></a>
 The project uses the Qt framework and does not interact with external systems and services.
 #### 2.2\. User Interfaces <a name="2.2"></a>
-The GUI of the project is presented with the help of mocaps [main window](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/mockups/MainWindow.png) and [volume control method](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/mockups/ShowVolume.png).
+The GUI of the project is presented with the help of mocaps [main window](https://raw.githubusercontent.com/steppbol/B-Player/master/documentation/mockups/MainWindow.png) and [volume control method](https://raw.githubusercontent.com/steppbol/B-Player/master/documentation/mockups/ShowVolume.png).
 The main window requires a separate view:
 
 Button | Event
