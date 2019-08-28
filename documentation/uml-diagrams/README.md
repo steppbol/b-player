@@ -100,18 +100,18 @@
 3. Конец.
 
 ### 2. Диаграмма активности<a name="2"></a>
-Диагаммы активности более подробно расписаны в следующем документе: [диаграммы активности](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/Activity/README.md)
+Диагаммы активности более подробно расписаны в следующем документе: [диаграммы активности](https://github.com/steppbol/B-Player/blob/master/docs/uml-diagrams/Activity/README.md)
 
 ### 3. Диаграмма последовательности<a name="3"></a>
 Диаграмма последовательности основного варианта использования представляет из себя следующую диаграмму:
-![Sequence Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Sequence/SequenceDiagram.png)
+![Sequence Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/uml-diagrams/Sequence/SequenceDiagram.png)
 
 ### 4. Диаграмма состояний<a name="4"></a>
-Диагаммы состояний более подробно расписаны в следующем документе: [диаграммы состояний](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/UMLDiagrams/State/README.md)
+Диагаммы состояний более подробно расписаны в следующем документе: [диаграммы состояний](https://github.com/steppbol/B-Player/blob/master/docs/uml-diagrams/State/README.md)
 
 ### 5. Диаграмма классов<a name="5"></a>
 Диаграмма классов представляет собой следующую диаграмму: 
-![Class Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Class/ClassDiagram.png)
+![Class Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/uml-diagrams/Class/ClassDiagram.png)
 На диаграмме указаны некоторые стереотипы:
 * \<\<create\>\> - Конструктор. Метод который будет вызываться при создании объекта класса
 * \<\<destroy\>\> - Деструктор. Метод, который будет вызываться при уничтожении объекта
@@ -120,4 +120,4 @@
 
 ### 6. Диаграмма развертывания и компонентов<a name="6"></a>
 Диаграммы развёртывания и компонентов представляет собой следующую диаграмму: 
-![Deployment Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/Project%20Documentation/UMLDiagrams/Deployment%20Component/Deployment.png)
+![Deployment Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/uml-diagrams/Deployment%20Component/Deployment.png)
