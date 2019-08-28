@@ -120,4 +120,4 @@
 
 ### 6. Диаграмма развертывания и компонентов<a name="6"></a>
 Диаграммы развёртывания и компонентов представляет собой следующую диаграмму: 
-![Deployment Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/docs/uml-diagrams/Deployment%20Component/Deployment.png)
+![Deployment Diagram](https://raw.githubusercontent.com/steppbol/B-Player/master/documentation/uml-diagrams/Deployment%20Component/Deployment.png)
