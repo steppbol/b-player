@@ -1,8 +1,8 @@
-# Глоссарий 
+# Glossary
 
-|Термин|Определение|
-|:---|:---|
-|Пользователь|Человек, который использует данное приложение|
-|Плейлист|Список аудиофайлов, которые в данный момент хранятся а программе|
-|Аудиофайл|Файл, который находится у Вас на компьютере и который еще не добавлен в плейлист аудиоплеера, например файлы формата ".mp3", ".wav" и т.д.|
-|Аудиозапись|Аудиофайл, который Вы добавили в плейлист аудиоплеера и готовый к воспроизведению|
+| Term | Definition |
+|: --- |: --- |
+| User | The person who uses this application |
+| Playlist | List of audio files that are currently stored in the program |
+| Audio file | A file that is on your computer and has not yet been added to the playlist of the audio player, for example, ".mp3", ".wav" files, etc. |
+| Audio recording | Audio file that you added to the playlist of the audio player and ready to play | 
