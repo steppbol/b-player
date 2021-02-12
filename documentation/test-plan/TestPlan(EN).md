@@ -20,7 +20,7 @@
 <a name="1"></a>
 ### 1. Introduction
 This plan is intended for testing the "B-Player" application. The purpose of testing is to check the performance and suitability of the application for practical use.
-This plan uses the terminology that corresponds to this annex, please read the [glossary of the annex] before reading it."B-Player"](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/Glossary(EN).md)
+This plan uses the terminology that corresponds to this annex, please read the [glossary of the "B-Player"](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/Glossary(EN).md) before reading it. 
 
 <a name="2"></a>
 ### 2. Testing Object
