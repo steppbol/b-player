@@ -15,22 +15,20 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget), leftMouse
 {
     ui->setupUi(this);
 
-    /// Настройка UI
-    this->setWindowFlags(Qt::FramelessWindowHint);      // Отключаем оформление окна
-    this->setAttribute(Qt::WA_TranslucentBackground);   // Делаем фон главного виджета прозрачным
-    this->setStyleSheet(Style::getWindowStyleSheet());    // Устанавливаем стиль виджета
-    this->setMouseTracking(true);   // Включаем отслеживание курсора без нажатых кнопок
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setStyleSheet(Style::getWindowStyleSheet());
+    this->setMouseTracking(true);
 
-    /// Создаём эффект тени
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
-    shadowEffect->setBlurRadius(9); // Устанавливаем радиус размытия
-    shadowEffect->setOffset(0);     // Устанавливаем смещение тени
-    ui->widgetInterface->setGraphicsEffect(shadowEffect);   // Устанавливаем эффект тени на окно
-    ui->widgetInterface->layout()->setMargin(0);            // Устанавливаем размер полей
+    shadowEffect->setBlurRadius(9);
+    shadowEffect->setOffset(0);
+
+    ui->widgetInterface->setGraphicsEffect(shadowEffect);
+    ui->widgetInterface->layout()->setMargin(0);
     ui->widgetInterface->layout()->setSpacing(0);
     ui->windowTitleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    /// Установка стилей для всех элементов
     ui->songTitleLabel->setStyleSheet("color:#c1c1c1;");
     ui->nextSongButton->setStyleSheet(Style::getNextSongButtonStyleSheet());
     ui->previousSongButton->setStyleSheet(Style::getPreviousSongButtonStyleSheet());
@@ -88,7 +86,6 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget), leftMouse
     connect(ui->stopButton, &QToolButton::clicked, player, &QMediaPlayer::stop);
     connect(ui->removeSongButton, &QToolButton::clicked, player, &QMediaPlayer::stop);
 
-    /// Устанавливаем громкость воспроизведения треков
     volumeButton = new VolumeButton(this);
     volumeButton->setToolTip(tr("Volume"));
     volumeButton->setVolume(player->volume());
@@ -97,19 +94,21 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget), leftMouse
     connect(volumeButton, &VolumeButton::volumeChanged, player, &QMediaPlayer::setVolume);
     ui->playlistControlHorizontalLayout->addWidget(volumeButton);
 
-    ///Устанавливаем перемотку треков и время вопроизыведения
     connect(player, &QMediaPlayer::positionChanged, this, &Widget::updatePosition);
     connect(player, &QMediaPlayer::durationChanged, this,&Widget:: updateDuration);
     connect(ui->durationSlider, &QAbstractSlider::valueChanged, this, &Widget::setPosition);
 
-    /// коннекты для кнопок сворачивания/максимизации/минимизации/закрытия
     connect(ui->minimizeWindowButton, &QToolButton::clicked, this, &QWidget::showMinimized);
-    connect(ui->maximizeWindowButton, &QToolButton::clicked, [this](){
-        if (this->isMaximized()) {
+    connect(ui->maximizeWindowButton, &QToolButton::clicked, [this]()
+    {
+        if (this->isMaximized())
+        {
             ui->maximizeWindowButton->setStyleSheet(Style::getMaximizeWindowButtonStyleSheet());
             this->layout()->setMargin(9);
             this->showNormal();
-        } else {
+        }
+        else
+        {
             ui->minimizeWindowButton->setStyleSheet(Style::getRestoreWindowButtonStyleSheet());
             this->layout()->setMargin(0);
             this->showMaximized();
@@ -118,16 +117,20 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget), leftMouse
 
     connect(ui->closeWindowButton, &QToolButton::clicked, this, &QWidget::close);
 
-    connect(ui->playlistTableView, &QTableView::doubleClicked, [this](const QModelIndex &index){
+    connect(ui->playlistTableView, &QTableView::doubleClicked, [this](const QModelIndex &index)
+    {
         playlist->setCurrentIndex(index.row());
     });
 
-    connect(playlist, &QMediaPlaylist::currentIndexChanged, [this](int index){
+    connect(playlist, &QMediaPlaylist::currentIndexChanged, [this](int index)
+    {
         ui->songTitleLabel->setText(playlistModel->data(playlistModel->index(index, 0)).toString());
     });
 
-    connect(playlist, &QMediaPlaylist::currentIndexChanged, [this](int index){
-            ui->playlistTableView->selectRow(index);});
+    connect(playlist, &QMediaPlaylist::currentIndexChanged, [this](int index)
+    {
+            ui->playlistTableView->selectRow(index);
+    });
 
     ui->durationSlider->setVisible(false);
     ui->durationLabel->setVisible(false);
@@ -159,7 +162,8 @@ void Widget::on_addSongButton_clicked()
 {
     QStringList files = QFileDialog::getOpenFileNames(this,tr("Open files"), QString(), tr("Audio Files(*.wav *.mp3)"));
 
-    foreach (QString filePath, files) {
+    foreach (QString filePath, files)
+    {
         QList<QStandardItem *> items;
         items.append(new QStandardItem(QDir(filePath).dirName()));
         items.append(new QStandardItem(filePath));
@@ -191,10 +195,13 @@ void Widget::on_shuffleButton_clicked()
 {
     static int check=4;
 
-    if(check%2==0) {
+    if(check%2==0)
+    {
         ui->shuffleButton->setStyleSheet(Style::getSequentialButtonStyleSheet());
         playlist->setPlaybackMode(QMediaPlaylist::Random);
-    } else {
+    }
+    else
+    {
         ui->shuffleButton->setStyleSheet(Style::getShuffleButtonStyleSheet());
         playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     }
@@ -209,7 +216,9 @@ QPoint Widget::previousPosition() const
 void Widget::setPreviousPosition(QPoint previousPosition)
 {
     if (m_previousPosition == previousPosition)
+    {
         return;
+    }
 
     m_previousPosition = previousPosition;
     emit previousPositionChanged(previousPosition);
@@ -217,7 +226,8 @@ void Widget::setPreviousPosition(QPoint previousPosition)
 
 void Widget::mousePressEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton ) {
+    if (event->button() == Qt::LeftButton )
+    {
         leftMouseButtonPressed = checkResizableField(event);
         setPreviousPosition(event->pos());
     }
@@ -226,23 +236,21 @@ void Widget::mousePressEvent(QMouseEvent *event)
 
 void Widget::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton) {
+    if (event->button() == Qt::LeftButton)
+    {
         leftMouseButtonPressed = None;
     }
+
     return QWidget::mouseReleaseEvent(event);
 }
 
 void Widget::mouseMoveEvent(QMouseEvent *event)
 {
-    // При перемещении мыши, проверяем статус нажатия левой кнопки мыши
     switch (leftMouseButtonPressed) {
-    case Move: {
-        // При этом проверяем, не максимизировано ли окно
-        if (isMaximized()) {
-            // При перемещении из максимизированного состояния
-            // Необходимо вернуть окно в нормальное состояние и установить стили кнопки
-            // А также путём нехитрых вычислений пересчитать позицию окна,
-            // чтобы оно оказалось под курсором
+    case Move:
+    {
+        if (isMaximized())
+        {
             ui->maximizeWindowButton->setStyleSheet(Style::getMaximizeWindowButtonStyleSheet());
             this->layout()->setMargin(9);
             auto part = event->screenPos().x() / width();
@@ -250,51 +258,59 @@ void Widget::mouseMoveEvent(QMouseEvent *event)
             auto offsetX = width() * part;
             setGeometry(event->screenPos().x() - offsetX, 0, width(), height());
             setPreviousPosition(QPoint(offsetX, event->y()));
-        } else {
-            // Если окно не максимизировано, то просто перемещаем его относительно
-            // последней запомненной позиции, пока не отпустим кнопку мыши
+        }
+        else
+        {
             auto dx = event->x() - m_previousPosition.x();
             auto dy = event->y() - m_previousPosition.y();
             setGeometry(x() + dx, y() + dy, width(), height());
         }
+
         break;
     }
-    case Top: {
-        // Для изменения размеров также проверяем на максимизацию
-        // поскольку мы же не можем изменить размеры у максимизированного окна
-        if (!isMaximized()) {
-        auto dy = event->y() - m_previousPosition.y();
-        setGeometry(x(), y() + dy, width(), height() - dy);
+    case Top:
+    {
+        if (!isMaximized())
+        {
+            auto dy = event->y() - m_previousPosition.y();
+            setGeometry(x(), y() + dy, width(), height() - dy);
         }
+
         break;
     }
-    case Bottom: {
-        if (!isMaximized()) {
+    case Bottom:
+    {
+        if (!isMaximized())
+        {
             auto dy = event->y() - m_previousPosition.y();
             setGeometry(x(), y(), width(), height() + dy);
             setPreviousPosition(event->pos());
         }
+
         break;
     }
-    case Left: {
-        if (!isMaximized()) {
+    case Left:
+    {
+        if (!isMaximized())
+        {
             auto dx = event->x() - m_previousPosition.x();
             setGeometry(x() + dx, y(), width() - dx, height());
         }
+
         break;
     }
-    case Right: {
-        if (!isMaximized()) {
+    case Right:
+    {
+        if (!isMaximized())
+        {
             auto dx = event->x() - m_previousPosition.x();
             setGeometry(x(), y(), width() + dx, height());
             setPreviousPosition(event->pos());
         }
+
         break;
     }
     default:
-        // Если курсор перемещается по окну без зажатой кнопки,
-        // то просто отслеживаем в какой области он находится
-        // и изменяем его курсор
         checkResizableField(event);
         break;
     }
@@ -303,38 +319,44 @@ void Widget::mouseMoveEvent(QMouseEvent *event)
 
 Widget::MouseType Widget::checkResizableField(QMouseEvent *event)
 {
-    QPointF position = event->screenPos();  // Определяем позицию курсора на экране
-    qreal x = this->x();                    // координаты окна приложения, ...
-    qreal y = this->y();                    // ... то есть координату левого верхнего угла окна
-    qreal width = this->width();            // А также ширину ...
-    qreal height = this->height();          // ... и высоту окна
+    QPointF position = event->screenPos();
+    qreal x = this->x();
+    qreal y = this->y();
+    qreal width = this->width();
+    qreal height = this->height();
 
-    // Определяем области, в которых может находиться курсор мыши
-    // По ним будет определён статус клика);
     QRectF rectTop(x + 9, y, width - 18, 7);
     QRectF rectBottom(x + 9, y + height - 7, width - 18, 7);
     QRectF rectLeft(x, y + 9, 7, height - 18);
     QRectF rectRight(x + width - 7, y + 9, 7, height - 18);
     QRectF rectInterface(x + 9, y + 9, width - 18, height - 18);
 
-    // И в зависимости от области, в которой находится курсор
-    // устанавливаем внешний вид курсора и возвращаем его статус
-    if (rectTop.contains(position)) {
+    if (rectTop.contains(position))
+    {
         setCursor(Qt::SizeVerCursor);
         return Top;
-    } else if (rectBottom.contains(position)) {
+    }
+    else if (rectBottom.contains(position))
+    {
         setCursor(Qt::SizeVerCursor);
         return Bottom;
-    } else if (rectLeft.contains(position)) {
+    }
+    else if (rectLeft.contains(position))
+    {
         setCursor(Qt::SizeHorCursor);
         return Left;
-    } else if (rectRight.contains(position)) {
+    }
+    else if (rectRight.contains(position))
+    {
         setCursor(Qt::SizeHorCursor);
         return Right;
-    } else if (rectInterface.contains(position)) {
+    }
+    else if (rectInterface.contains(position)) {
         setCursor(QCursor());
         return Move;
-    } else {
+    }
+    else
+    {
         setCursor(QCursor());
         return None;
     }
@@ -342,9 +364,12 @@ Widget::MouseType Widget::checkResizableField(QMouseEvent *event)
 
 void Widget::togglePlayback()
 {
-    if (player->state() == QMediaPlayer::PlayingState) {
+    if (player->state() == QMediaPlayer::PlayingState)
+    {
         player->pause();
-    } else {
+    }
+    else
+    {
         player->play();
     }
 }
@@ -383,7 +408,8 @@ void Widget::updateDuration(qint64 duration)
 
 void Widget::setPosition(int position)
 {
-    if (qAbs(player->position() - position) > 99) {
+    if (qAbs(player->position() - position) > 99)
+    {
         player->setPosition(position);
     }
 }
@@ -403,7 +429,8 @@ void Widget::createTaskbar()
 
 void Widget::updateTaskbar()
 {
-    switch (player->state()) {
+    switch (player->state())
+    {
     case QMediaPlayer::PlayingState:
         taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaPlay));
         taskbarProgress->show();
@@ -459,10 +486,13 @@ void Widget::updateThumbnailToolBar()
     backwardToolButton->setEnabled(player->position() > 0);
     forwardToolButton->setEnabled(player->position() < player->duration());
 
-    if (player->state() == QMediaPlayer::PlayingState) {
+    if (player->state() == QMediaPlayer::PlayingState)
+    {
         playToolButton->setToolTip(tr("Pause"));
         playToolButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
-    } else {
+    }
+    else
+    {
         playToolButton->setToolTip(tr("Play"));
         playToolButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     }

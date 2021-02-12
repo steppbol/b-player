@@ -79,11 +79,14 @@ void VolumeButton::stylize()
     QString css("QMenu { border: 1px solid %1; border-radius: 1px; background: transparent; }");
     menu->setStyleSheet(css);
 #elif _WIN32
-    if (QtWin::isCompositionEnabled()) {
+    if (QtWin::isCompositionEnabled())
+    {
         QtWin::enableBlurBehindWindow(menu);
         QString css("QMenu { border: 1px solid %1; border-radius: 1px; background: transparent; }");
         menu->setStyleSheet(css.arg(QtWin::realColorizationColor().name()));
-    } else {
+    }
+    else
+    {
         QtWin::disableBlurBehindWindow(menu);
         QString css("QMenu { border: 1px solid black; background: %1; }");
         menu->setStyleSheet(css.arg(QtWin::realColorizationColor().name()));

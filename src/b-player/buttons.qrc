@@ -34,5 +34,7 @@
         <file>buttons/window-restore-gray.png</file>
         <file>buttons/window-restore.png</file>
         <file>buttons/high_volume.png</file>
+        <file>icon/b-player.ico</file>
+        <file>icon/b-player.png</file>
     </qresource>
 </RCC>
