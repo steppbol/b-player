@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/">
+        <file>buttons/add-green.png</file>
+        <file>buttons/add.png</file>
+        <file>buttons/close-red.png</file>
+        <file>buttons/close.png</file>
+        <file>buttons/pause-blue.png</file>
+        <file>buttons/pause-gray.png</file>
+        <file>buttons/pause.png</file>
+        <file>buttons/play-blue.png</file>
+        <file>buttons/play-gray.png</file>
+        <file>buttons/play.png</file>
+        <file>buttons/remove-orange.png</file>
+        <file>buttons/remove.png</file>
+        <file>buttons/sequential-blue.png</file>
+        <file>buttons/sequential-gray.png</file>
+        <file>buttons/sequential.png</file>
+        <file>buttons/shuffle-blue.png</file>
+        <file>buttons/shuffle-gray.png</file>
+        <file>buttons/shuffle.png</file>
+        <file>buttons/skip-next-blue.png</file>
+        <file>buttons/skip-next-gray.png</file>
+        <file>buttons/skip-next.png</file>
+        <file>buttons/skip-previous-blue.png</file>
+        <file>buttons/skip-previous-gray.png</file>
+        <file>buttons/skip-previous.png</file>
+        <file>buttons/stop-blue.png</file>
+        <file>buttons/stop-gray.png</file>
+        <file>buttons/stop.png</file>
+        <file>buttons/window-maximize-gray.png</file>
+        <file>buttons/window-maximize.png</file>
+        <file>buttons/window-minimize-gray.png</file>
+        <file>buttons/window-minimize.png</file>
+        <file>buttons/window-restore-gray.png</file>
+        <file>buttons/window-restore.png</file>
+        <file>buttons/high_volume.png</file>
+    </qresource>
+</RCC>

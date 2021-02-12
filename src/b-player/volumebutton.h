@@ -1,12 +1,7 @@
 #ifndef VOLUMEBUTTON_H
 #define VOLUMEBUTTON_H
 
-#include <QtWidgets>
-#include <QtWinExtras>
 #include <QToolButton>
-
-#include "widget.h"
-#include "style.h"
 
 QT_FORWARD_DECLARE_CLASS(QMenu)
 QT_FORWARD_DECLARE_CLASS(QLabel)
@@ -18,9 +13,9 @@ class VolumeButton : public QToolButton
     Q_PROPERTY(int volume READ volume WRITE setVolume NOTIFY volumeChanged)
 
 private:
-    QMenu *m_menu = nullptr;
-    QLabel *m_label = nullptr;
-    QSlider *m_slider = nullptr;
+    QMenu *menu = nullptr;
+    QLabel *label = nullptr;
+    QSlider *slider = nullptr;
 
 public:
    explicit VolumeButton(QWidget *parent = nullptr);

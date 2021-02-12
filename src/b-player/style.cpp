@@ -17,7 +17,7 @@ QString Style::getLabelStyleSheet()
            "}";
 }
 
-QString Style::getCloseStyleSheet()
+QString Style::getCloseWindowButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/close-red.png);"
@@ -38,7 +38,7 @@ QString Style::getCloseStyleSheet()
            "}";
 }
 
-QString Style::getMaximizeStyleSheet()
+QString Style::getMaximizeWindowButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/window-maximize-gray.png);"
@@ -59,7 +59,7 @@ QString Style::getMaximizeStyleSheet()
            "}";
 }
 
-QString Style::getRestoreStyleSheet()
+QString Style::getRestoreWindowButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/window-restore-gray.png);"
@@ -80,7 +80,7 @@ QString Style::getRestoreStyleSheet()
            "}";
 }
 
-QString Style::getMinimizeStyleSheet()
+QString Style::getMinimizeWindowButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/window-minimize-gray.png);"
@@ -101,7 +101,7 @@ QString Style::getMinimizeStyleSheet()
            "}";
 }
 
-QString Style::getNextStyleSheet()
+QString Style::getNextSongButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/skip-next.png);"
@@ -111,14 +111,14 @@ QString Style::getNextStyleSheet()
            "border: none;"
            "}"
            "QToolButton:hover { "
-           "image: url(:/buttons/skip-gray.png)"
+           "image: url(:/buttons/skip-next-gray.png)"
            "}"
            "QToolButton:pressed { "
            "image: url(:/buttons/skip-next-blue.png)"
            "}";
 }
 
-QString Style::getPreviousStyleSheet()
+QString Style::getPreviousSongButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/skip-previous.png);"
@@ -135,7 +135,7 @@ QString Style::getPreviousStyleSheet()
            "}";
 }
 
-QString Style::getStopStyleSheet()
+QString Style::getStopButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/stop.png);"
@@ -152,7 +152,7 @@ QString Style::getStopStyleSheet()
            "}";
 }
 
-QString Style::getPlayStyleSheet()
+QString Style::getPlayButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/play.png);"
@@ -169,41 +169,41 @@ QString Style::getPlayStyleSheet()
            "}";
 }
 
-QString Style::getRandomStyleSheet()
+QString Style::getShuffleButtonStyleSheet()
 {
     return "QToolButton { "
-           "image: url(:/buttons/rand-w.png);"
+           "image: url(:/buttons/shuffle.png);"
            "icon-size: 12px;"
            "padding: 0px;"
            "margin: 0px;"
            "border: none;"
            "}"
            "QToolButton:hover { "
-           "image: url(:/buttons/rand-gray.png)"
+           "image: url(:/buttons/shuffle-gray.png)"
            "}"
            "QToolButton:pressed { "
-           "image: url(:/buttons/rand-blue.png)"
+           "image: url(:/buttons/shuffle-blue.png)"
            "}";
 }
 
-QString Style::getSequentialStyleSheet()
+QString Style::getSequentialButtonStyleSheet()
 {
     return "QToolButton { "
-           "image: url(:/buttons/seq.png);"
+           "image: url(:/buttons/sequential.png);"
            "icon-size: 14px;"
            "padding: 0px;"
            "margin: 0px;"
            "border: none;"
            "}"
            "QToolButton:hover { "
-           "image: url(:/buttons/seq-gray.png)"
+           "image: url(:/buttons/sequential-gray.png)"
            "}"
            "QToolButton:pressed { "
-           "image: url(:/buttons/seq-blue.png)"
+           "image: url(:/buttons/sequential-blue.png)"
            "}";
 }
 
-QString Style::getPauseStyleSheet()
+QString Style::getPauseButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/pause.png);"
@@ -220,28 +220,7 @@ QString Style::getPauseStyleSheet()
            "}";
 }
 
-QString Style::getMenuStyleSheet()
-{
-    return "QToolButton { "
-           "color: #8f8f8f;"
-           "background-color: #292929;"
-           "icon-size: 12px;"
-           "padding-left: 10px;"
-           "padding-right: 10px;"
-           "padding-top: 5px;"
-           "padding-bottom: 5px;"
-           "border: 1px solid #292929; "
-           "}"
-           "QToolButton:hover {"
-           "color: white;"
-           "}"
-           "QToolButton:pressed { "
-           "color: white; "
-           "background-color: #3575ff; "
-           "}";
-}
-
-QString Style::getTableViewStyleSheet()
+QString Style::getPlaylistTableViewStyleSheet()
 {
     return "QTableView { "
            "background-color: #454545; "
@@ -260,10 +239,10 @@ QString Style::getTableViewStyleSheet()
            "}";
 }
 
-QString Style::getAddStyleSheet()
+QString Style::getAddSongButtonStyleSheet()
 {
     return "QToolButton { "
-           "image: url(:/buttons/plus-green.png);"
+           "image: url(:/buttons/add-green.png);"
            "background-color: #292929; "
            "icon-size: 12px;"
            "padding-left: 12px;"
@@ -273,15 +252,15 @@ QString Style::getAddStyleSheet()
            "border: 1px solid #292929; "
            "}"
            "QToolButton:hover {"
-           "image: url(:/buttons/plus.png); "
+           "image: url(:/buttons/add.png); "
            "}"
            "QToolButton:pressed { "
-           "image: url(:/buttons/plus.png);"
+           "image: url(:/buttons/add.png);"
            "background-color: #3575ff; "
            "}";
 }
 
-QString Style::getRemoveStyleSheet()
+QString Style::getRemoveSongButtonStyleSheet()
 {
     return "QToolButton { "
            "image: url(:/buttons/remove-orange.png);"
@@ -303,9 +282,8 @@ QString Style::getRemoveStyleSheet()
 }
 
 QString Style::getSliderStyleSheet()
-{    
- return
-         "QSlider::groove:horizontal {"
+{
+ return  "QSlider::groove:horizontal {"
          "border: 1px solid #454545;"
          "background: #454545;"
          "height: 3px;"
@@ -356,8 +334,7 @@ QString Style::getSliderStyleSheet()
 
 QString Style::getVerticalScrollBarStyleSheet()
 {
- return
-         "QScrollBar::groove:vertical {"
+ return "QScrollBar::groove:vertical {"
          "border: 0px solid #454545;"
          "background: white;"
          "height: 10px;"
@@ -415,8 +392,7 @@ QString Style::getVerticalScrollBarStyleSheet()
 
 QString Style::getHorizontalScrollBarStyleSheet()
 {
- return
-         "QScrollBar::groove:horizontal {"
+ return  "QScrollBar::groove:horizontal {"
          "border: 0px solid #292929;"
          "background: white;"
          "height: 10px;"

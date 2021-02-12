@@ -6,73 +6,34 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>498</width>
-    <height>228</height>
+    <width>500</width>
+    <height>250</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="windowTitle">
-   <string>Simple Audio Player</string>
+   <string>B-Player</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
+  <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QWidget" name="widgetInterface" native="true">
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="3" column="0">
+       <layout class="QHBoxLayout" name="durationControlHorizontalLayout">
         <item>
-         <widget class="QLabel" name="currentTrack">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	font: 8pt &quot;Century Gothic&quot;;}</string>
-          </property>
-          <property name="text">
-           <string/>
+         <widget class="QSlider" name="durationSlider">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QToolButton" name="btn_random">
-          <property name="text">
-           <string/>
+         <widget class="QLabel" name="durationLabel">
+          <property name="minimumSize">
+           <size>
+            <width>32</width>
+            <height>0</height>
+           </size>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btn_previous">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btn_stop">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btn_play">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btn_pause">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QToolButton" name="btn_next">
           <property name="text">
            <string/>
           </property>
@@ -81,49 +42,71 @@
        </layout>
       </item>
       <item row="2" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QHBoxLayout" name="songControlHorizontalLayout">
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="songTitleLabel">
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QSlider" name="positionSlider">
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+         <widget class="QToolButton" name="shuffleButton">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="positionLabel">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-	font: 8pt &quot;Century Gothic&quot;;}</string>
-          </property>
+         <widget class="QToolButton" name="previousSongButton">
           <property name="text">
-           <string>00:00</string>
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="stopButton">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="pauseButton">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="playButton">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="nextSongButton">
+          <property name="text">
+           <string/>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="3" column="0">
-       <widget class="QTableView" name="playlistView"/>
-      </item>
-      <item row="0" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item row="1" column="0">
+       <layout class="QHBoxLayout" name="windowPLaylistControlHorizontalLayout">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <layout class="QHBoxLayout" name="playlistControlHorizontalLayout">
           <item>
-           <widget class="QToolButton" name="btn_add"/>
+           <widget class="QToolButton" name="addSongButton">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="btn_del">
+           <widget class="QToolButton" name="removeSongButton">
             <property name="text">
              <string/>
             </property>
@@ -132,7 +115,7 @@
          </layout>
         </item>
         <item>
-         <spacer name="horizontalSpacer_3">
+         <spacer name="leftHorizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -145,19 +128,14 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label">
-          <property name="styleSheet">
-           <string notr="true">QLabel{
-color:rgb(143, 143, 143);
-	font: 8pt &quot;Century Gothic&quot;;}</string>
-          </property>
+         <widget class="QLabel" name="windowTitleLabel">
           <property name="text">
            <string>B-Player</string>
           </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_4">
+         <spacer name="rightHorizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -170,26 +148,23 @@ color:rgb(143, 143, 143);
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="windowControlHorizontalLayout">
           <item>
-           <widget class="QToolButton" name="btn_minimize">
-            <property name="acceptDrops">
-             <bool>false</bool>
-            </property>
+           <widget class="QToolButton" name="minimizeWindowButton">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="btn_maximize">
+           <widget class="QToolButton" name="maximizeWindowButton">
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="btn_close">
+           <widget class="QToolButton" name="closeWindowButton">
             <property name="text">
              <string/>
             </property>
@@ -199,12 +174,14 @@ color:rgb(143, 143, 143);
         </item>
        </layout>
       </item>
+      <item row="4" column="0">
+       <widget class="QTableView" name="playlistTableView"/>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>

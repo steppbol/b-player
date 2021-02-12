@@ -1,10 +1,17 @@
 #include "widget.h"
 #include "ui_widget.h"
 
-Widget::Widget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Widget),
-    m_leftMouseButtonPressed(None)
+#include <QMediaPlaylist>
+#include <QMouseEvent>
+#include <QFileDialog>
+#include <QDir>
+#include <QGraphicsDropShadowEffect>
+#include <QMediaMetaData>
+#include <QScrollBar>
+
+#include "style.h"
+
+Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget), leftMouseButtonPressed(None)
 {
     ui->setupUi(this);
 
@@ -21,121 +28,121 @@ Widget::Widget(QWidget *parent) :
     ui->widgetInterface->setGraphicsEffect(shadowEffect);   // Устанавливаем эффект тени на окно
     ui->widgetInterface->layout()->setMargin(0);            // Устанавливаем размер полей
     ui->widgetInterface->layout()->setSpacing(0);
-    ui->label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    ui->windowTitleLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
     /// Установка стилей для всех элементов
-    ui->currentTrack->setStyleSheet("color:#c1c1c1;");
-    ui->btn_close->setStyleSheet(Style::getCloseStyleSheet());
-    ui->btn_maximize->setStyleSheet(Style::getMaximizeStyleSheet());
-    ui->btn_minimize->setStyleSheet(Style::getMinimizeStyleSheet());
-    ui->btn_next->setStyleSheet(Style::getNextStyleSheet());
-    ui->btn_previous->setStyleSheet(Style::getPreviousStyleSheet());
-    ui->btn_stop->setStyleSheet(Style::getStopStyleSheet());
-    ui->btn_play->setStyleSheet(Style::getPlayStyleSheet());
-    ui->btn_pause->setStyleSheet(Style::getPauseStyleSheet());
-    ui->btn_add->setStyleSheet(Style::getMenuStyleSheet());
-    ui->btn_del->setStyleSheet(Style::getRemoveStyleSheet());
-    ui->btn_add->setStyleSheet(Style::getAddStyleSheet());
-    ui->btn_random->setStyleSheet(Style::getRandomStyleSheet());
+    ui->songTitleLabel->setStyleSheet("color:#c1c1c1;");
+    ui->nextSongButton->setStyleSheet(Style::getNextSongButtonStyleSheet());
+    ui->previousSongButton->setStyleSheet(Style::getPreviousSongButtonStyleSheet());
+    ui->stopButton->setStyleSheet(Style::getStopButtonStyleSheet());
+    ui->playButton->setStyleSheet(Style::getPlayButtonStyleSheet());
+    ui->pauseButton->setStyleSheet(Style::getPauseButtonStyleSheet());
+    ui->shuffleButton->setStyleSheet(Style::getShuffleButtonStyleSheet());
+    ui->closeWindowButton->setStyleSheet(Style::getCloseWindowButtonStyleSheet());
+    ui->maximizeWindowButton->setStyleSheet(Style::getMaximizeWindowButtonStyleSheet());
+    ui->minimizeWindowButton->setStyleSheet(Style::getMinimizeWindowButtonStyleSheet());
+    ui->removeSongButton->setStyleSheet(Style::getRemoveSongButtonStyleSheet());
+    ui->addSongButton->setStyleSheet(Style::getAddSongButtonStyleSheet());
+    ui->durationSlider->setStyleSheet(Style::getSliderStyleSheet());
+    ui->playlistTableView->setStyleSheet(Style::getPlaylistTableViewStyleSheet());
+    ui->playlistTableView->verticalScrollBar()->setStyleSheet(Style::getVerticalScrollBarStyleSheet());
+    ui->playlistTableView->horizontalScrollBar()->setStyleSheet(Style::getHorizontalScrollBarStyleSheet());
 
-    ui->playlistView->setStyleSheet(Style::getTableViewStyleSheet());
-    ui->positionSlider->setStyleSheet(Style::getSliderStyleSheet());
-    ui->playlistView->verticalScrollBar()->setStyleSheet(Style::getVerticalScrollBarStyleSheet());
-    ui->playlistView->horizontalScrollBar()->setStyleSheet(Style::getHorizontalScrollBarStyleSheet());
+    ui->addSongButton->setToolTip("Add track");
+    ui->removeSongButton->setToolTip("Remove track");
+    ui->nextSongButton->setToolTip("Next track");
+    ui->previousSongButton->setToolTip("Previous track");
+    ui->playButton->setToolTip("Play");
+    ui->pauseButton->setToolTip("Pause");
+    ui->stopButton->setToolTip("Stop");
+    ui->shuffleButton->setToolTip("Type of payback");
 
-    ui->btn_add->setToolTip("Add track");
-    ui->btn_del->setToolTip("Remove track");
-    ui->btn_next->setToolTip("Next track");
-    ui->btn_pause->setToolTip("Pause");
-    ui->btn_play->setToolTip("Play");
-    ui->btn_previous->setToolTip("Previous track");
-    ui->btn_stop->setToolTip("Stop");
-    ui->btn_random->setToolTip("Type of payback");
+    ui->nextSongButton->setCursor(Qt::PointingHandCursor);
+    ui->previousSongButton->setCursor(Qt::PointingHandCursor);
+    ui->playButton->setCursor(Qt::PointingHandCursor);
+    ui->pauseButton->setCursor(Qt::PointingHandCursor);
+    ui->stopButton->setCursor(Qt::PointingHandCursor);
 
-    ui->btn_next->setCursor(Qt::PointingHandCursor);
-    ui->btn_previous->setCursor(Qt::PointingHandCursor);
-    ui->btn_stop->setCursor(Qt::PointingHandCursor);
-    ui->btn_play->setCursor(Qt::PointingHandCursor);
-    ui->btn_pause->setCursor(Qt::PointingHandCursor);
+    playlistModel = new QStandardItemModel(this);
+    ui->playlistTableView->setModel(playlistModel);
 
-    m_playListModel = new QStandardItemModel(this);
-    ui->playlistView->setModel(m_playListModel);
+    ui->windowControlHorizontalLayout->setSpacing(0);
+    ui->playlistControlHorizontalLayout->setSpacing(0);
 
-    ui->horizontalLayout->setSpacing(0);
-    ui->horizontalLayout_2->setSpacing(0);
-    ui->playlistView->verticalHeader()->setVisible(false);
+    ui->playlistTableView->verticalHeader()->setVisible(false);
+    ui->playlistTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->playlistTableView->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->playlistTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->playlistTableView->horizontalHeader()->setStretchLastSection(true);
 
-    ui->playlistView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->playlistView->setSelectionMode(QAbstractItemView::SingleSelection);
-    ui->playlistView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->playlistView->horizontalHeader()->setStretchLastSection(true);
+    player = new QMediaPlayer(this);
+    playlist = new QMediaPlaylist(player);
+    player->setPlaylist(playlist);
 
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
 
-    m_player = new QMediaPlayer(this);
-    m_playlist = new QMediaPlaylist(m_player);
-    m_player->setPlaylist(m_playlist);
-
-    m_playlist->setPlaybackMode(QMediaPlaylist::Loop);
-
-    connect(ui->btn_previous, &QToolButton::clicked, m_playlist, &QMediaPlaylist::previous);
-    connect(ui->btn_next, &QToolButton::clicked, m_playlist, &QMediaPlaylist::next);
-    connect(ui->btn_play, &QToolButton::clicked, m_player, &QMediaPlayer::play);
-    connect(ui->btn_pause, &QToolButton::clicked, m_player, &QMediaPlayer::pause);
-    connect(ui->btn_stop, &QToolButton::clicked, m_player, &QMediaPlayer::stop);
-    connect(ui->btn_del, &QToolButton::clicked, m_player, &QMediaPlayer::stop);
+    connect(ui->previousSongButton, &QToolButton::clicked, playlist, &QMediaPlaylist::previous);
+    connect(ui->nextSongButton, &QToolButton::clicked, playlist, &QMediaPlaylist::next);
+    connect(ui->playButton, &QToolButton::clicked, player, &QMediaPlayer::play);
+    connect(ui->pauseButton, &QToolButton::clicked, player, &QMediaPlayer::pause);
+    connect(ui->stopButton, &QToolButton::clicked, player, &QMediaPlayer::stop);
+    connect(ui->removeSongButton, &QToolButton::clicked, player, &QMediaPlayer::stop);
 
     /// Устанавливаем громкость воспроизведения треков
-    m_volumeButton = new VolumeButton(this);
-    m_volumeButton->setToolTip(tr("Volume"));
-    m_volumeButton->setVolume(m_player->volume());
-    m_volumeButton->setStyleSheet("QToolButton::menu-indicator{image:none;}");
-    connect(m_volumeButton, &VolumeButton::volumeChanged, m_player, &QMediaPlayer::setVolume);
-    ui->horizontalLayout_2->addWidget(m_volumeButton);
+    volumeButton = new VolumeButton(this);
+    volumeButton->setToolTip(tr("Volume"));
+    volumeButton->setVolume(player->volume());
+    volumeButton->setStyleSheet("QToolButton::menu-indicator{image:none;}");
+
+    connect(volumeButton, &VolumeButton::volumeChanged, player, &QMediaPlayer::setVolume);
+    ui->playlistControlHorizontalLayout->addWidget(volumeButton);
 
     ///Устанавливаем перемотку треков и время вопроизыведения
-    connect(m_player, &QMediaPlayer::positionChanged, this, updatePosition);
-    connect(m_player, &QMediaPlayer::durationChanged, this, updateDuration);
-    connect(ui->positionSlider, &QAbstractSlider::valueChanged, this, &Widget::setPosition);
+    connect(player, &QMediaPlayer::positionChanged, this, &Widget::updatePosition);
+    connect(player, &QMediaPlayer::durationChanged, this,&Widget:: updateDuration);
+    connect(ui->durationSlider, &QAbstractSlider::valueChanged, this, &Widget::setPosition);
 
     /// коннекты для кнопок сворачивания/максимизации/минимизации/закрытия
-    connect(ui->btn_minimize, &QToolButton::clicked, this, &QWidget::showMinimized);
-    connect(ui->btn_maximize, &QToolButton::clicked, [this](){
+    connect(ui->minimizeWindowButton, &QToolButton::clicked, this, &QWidget::showMinimized);
+    connect(ui->maximizeWindowButton, &QToolButton::clicked, [this](){
         if (this->isMaximized()) {
-            ui->btn_maximize->setStyleSheet(Style::getMaximizeStyleSheet());
+            ui->maximizeWindowButton->setStyleSheet(Style::getMaximizeWindowButtonStyleSheet());
             this->layout()->setMargin(9);
             this->showNormal();
         } else {
-            ui->btn_maximize->setStyleSheet(Style::getRestoreStyleSheet());
+            ui->minimizeWindowButton->setStyleSheet(Style::getRestoreWindowButtonStyleSheet());
             this->layout()->setMargin(0);
             this->showMaximized();
         }
-    });    
-
-    connect(ui->btn_close, &QToolButton::clicked, this, &QWidget::close);
-
-    connect(ui->playlistView, &QTableView::doubleClicked, [this](const QModelIndex &index){
-        m_playlist->setCurrentIndex(index.row());
     });
 
-    connect(m_playlist, &QMediaPlaylist::currentIndexChanged, [this](int index){
-        ui->currentTrack->setText(m_playListModel->data(m_playListModel->index(index, 0)).toString());
+    connect(ui->closeWindowButton, &QToolButton::clicked, this, &QWidget::close);
+
+    connect(ui->playlistTableView, &QTableView::doubleClicked, [this](const QModelIndex &index){
+        playlist->setCurrentIndex(index.row());
     });
 
-    connect(m_playlist, &QMediaPlaylist::currentIndexChanged, [this](int index){
-            ui->playlistView->selectRow(index);});
+    connect(playlist, &QMediaPlaylist::currentIndexChanged, [this](int index){
+        ui->songTitleLabel->setText(playlistModel->data(playlistModel->index(index, 0)).toString());
+    });
 
-    ui->positionSlider->setVisible(false);
-    ui->positionLabel->setVisible(false);
-    ui->btn_stop->setVisible(false);
-    ui->btn_pause->setVisible(false);
-    ui->btn_next->setVisible(false);
-    ui->btn_play->setVisible(false);
-    ui->btn_previous->setVisible(false);
-    ui->btn_random->setVisible(false);
-    ui->currentTrack->setText("");
+    connect(playlist, &QMediaPlaylist::currentIndexChanged, [this](int index){
+            ui->playlistTableView->selectRow(index);});
 
+    ui->durationSlider->setVisible(false);
+    ui->durationLabel->setVisible(false);
+    ui->stopButton->setVisible(false);
+    ui->nextSongButton->setVisible(false);
+    ui->previousSongButton->setVisible(false);
+    ui->playButton->setVisible(false);
+    ui->pauseButton->setVisible(false);
+    ui->shuffleButton->setVisible(false);
+    ui->songTitleLabel->setText("");
+
+#ifdef _WIN32
     createTaskbar();
     createThumbnailToolBar();
+#endif
 
     setWindowTitle("B-Player");
 }
@@ -143,55 +150,53 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
     delete ui;
-    delete m_playListModel;
-    delete m_playlist;
-    delete m_player;
+    delete playlistModel;
+    delete playlist;
+    delete player;
 }
 
-void Widget::on_btn_add_clicked()
+void Widget::on_addSongButton_clicked()
 {
-    QStringList files = QFileDialog::getOpenFileNames(this,
-                                                      tr("Open files"),
-                                                      QString(),
-                                                      tr("Audio Files(*.wav *.mp3)"));
+    QStringList files = QFileDialog::getOpenFileNames(this,tr("Open files"), QString(), tr("Audio Files(*.wav *.mp3)"));
 
     foreach (QString filePath, files) {
         QList<QStandardItem *> items;
         items.append(new QStandardItem(QDir(filePath).dirName()));
         items.append(new QStandardItem(filePath));
-        m_playListModel->appendRow(items);
-        m_playlist->addMedia(QUrl(filePath));
+
+        playlistModel->appendRow(items);
+        playlist->addMedia(QUrl(filePath));
     };
 
-    ui->positionSlider->setVisible(true);
-    ui->positionLabel->setVisible(true);
-    ui->btn_stop->setVisible(true);
-    ui->btn_pause->setVisible(true);
-    ui->btn_next->setVisible(true);
-    ui->btn_play->setVisible(true);
-    ui->btn_previous->setVisible(true);
-    ui->btn_random->setVisible(true);
+    ui->durationSlider->setVisible(true);
+    ui->durationLabel->setVisible(true);
+    ui->stopButton->setVisible(true);
+    ui->pauseButton->setVisible(true);
+    ui->playButton->setVisible(true);
+    ui->nextSongButton->setVisible(true);
+    ui->previousSongButton->setVisible(true);
+    ui->shuffleButton->setVisible(true);
 
-    m_playListModel->setHorizontalHeaderLabels(QStringList()  << tr("AUDIO TRACK")
-                                               << tr("FILE PATH"));
+    playlistModel->setHorizontalHeaderLabels(QStringList()  << tr("AUDIO TRACK") << tr("FILE PATH"));
 }
 
-void Widget::on_btn_del_clicked()
+void Widget::on_removeSongButton_clicked()
 {
-    m_playlist->removeMedia(ui->playlistView->currentIndex().row());
-    m_playListModel->removeRow(ui->playlistView->currentIndex().row());
-    ui->currentTrack->setText("");
+    playlist->removeMedia(ui->playlistTableView->currentIndex().row());
+    playlistModel->removeRow(ui->playlistTableView->currentIndex().row());
+    ui->songTitleLabel->setText("");
 }
 
-void Widget::on_btn_random_clicked()
+void Widget::on_shuffleButton_clicked()
 {
     static int check=4;
+
     if(check%2==0) {
-    ui->btn_random->setStyleSheet(Style::getSequentialStyleSheet());
-    m_playlist->setPlaybackMode(QMediaPlaylist::Random);
+        ui->shuffleButton->setStyleSheet(Style::getSequentialButtonStyleSheet());
+        playlist->setPlaybackMode(QMediaPlaylist::Random);
     } else {
-    ui->btn_random->setStyleSheet(Style::getRandomStyleSheet());
-    m_playlist->setPlaybackMode(QMediaPlaylist::Sequential);
+        ui->shuffleButton->setStyleSheet(Style::getShuffleButtonStyleSheet());
+        playlist->setPlaybackMode(QMediaPlaylist::Sequential);
     }
     check++;
 }
@@ -213,7 +218,7 @@ void Widget::setPreviousPosition(QPoint previousPosition)
 void Widget::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton ) {
-        m_leftMouseButtonPressed = checkResizableField(event);
+        leftMouseButtonPressed = checkResizableField(event);
         setPreviousPosition(event->pos());
     }
     return QWidget::mousePressEvent(event);
@@ -222,7 +227,7 @@ void Widget::mousePressEvent(QMouseEvent *event)
 void Widget::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton) {
-        m_leftMouseButtonPressed = None;
+        leftMouseButtonPressed = None;
     }
     return QWidget::mouseReleaseEvent(event);
 }
@@ -230,7 +235,7 @@ void Widget::mouseReleaseEvent(QMouseEvent *event)
 void Widget::mouseMoveEvent(QMouseEvent *event)
 {
     // При перемещении мыши, проверяем статус нажатия левой кнопки мыши
-    switch (m_leftMouseButtonPressed) {
+    switch (leftMouseButtonPressed) {
     case Move: {
         // При этом проверяем, не максимизировано ли окно
         if (isMaximized()) {
@@ -238,7 +243,7 @@ void Widget::mouseMoveEvent(QMouseEvent *event)
             // Необходимо вернуть окно в нормальное состояние и установить стили кнопки
             // А также путём нехитрых вычислений пересчитать позицию окна,
             // чтобы оно оказалось под курсором
-            ui->btn_maximize->setStyleSheet(Style::getMaximizeStyleSheet());
+            ui->maximizeWindowButton->setStyleSheet(Style::getMaximizeWindowButtonStyleSheet());
             this->layout()->setMargin(9);
             auto part = event->screenPos().x() / width();
             this->showNormal();
@@ -335,34 +340,83 @@ Widget::MouseType Widget::checkResizableField(QMouseEvent *event)
     }
 }
 
+void Widget::togglePlayback()
+{
+    if (player->state() == QMediaPlayer::PlayingState) {
+        player->pause();
+    } else {
+        player->play();
+    }
+}
+
+void Widget::seekForward()
+{
+    ui->durationSlider->triggerAction(QSlider::SliderPageStepAdd);
+}
+
+void Widget::seekBackward()
+{
+    ui->durationSlider->triggerAction(QSlider::SliderPageStepSub);
+}
+
+static QString formatTime(qint64 timeMilliSeconds)
+{
+    qint64 seconds = timeMilliSeconds / 1000;
+    const qint64 minutes = seconds / 60;
+    seconds -= minutes * 60;
+
+    return QStringLiteral("%1:%2").arg(minutes, 2, 10, QLatin1Char('0')).arg(seconds, 2, 10, QLatin1Char('0'));
+}
+
+void Widget::updatePosition(qint64 position)
+{
+    ui->durationSlider->setValue(position);
+    ui->durationLabel->setText(formatTime(position));
+}
+
+void Widget::updateDuration(qint64 duration)
+{
+    ui->durationSlider->setRange(0, duration);
+    ui->durationSlider->setEnabled(duration > 0);
+    ui->durationSlider->setPageStep(duration / 10);
+}
+
+void Widget::setPosition(int position)
+{
+    if (qAbs(player->position() - position) > 99) {
+        player->setPosition(position);
+    }
+}
+
+#ifdef _WIN32
 void Widget::createTaskbar()
 {
-    m_taskbarButton = new QWinTaskbarButton(this);
-    m_taskbarButton->setWindow(windowHandle());
+    taskbarButton = new QWinTaskbarButton(this);
+    taskbarButton->setWindow(windowHandle());
 
-    m_taskbarProgress = m_taskbarButton->progress();
-    connect(ui->positionSlider, &QAbstractSlider::valueChanged, m_taskbarProgress, &QWinTaskbarProgress::setValue);
-    connect(ui->positionSlider, &QAbstractSlider::rangeChanged, m_taskbarProgress, &QWinTaskbarProgress::setRange);
+    taskbarProgress = taskbarButton->progress();
+    connect(ui->durationSlider, &QAbstractSlider::valueChanged, taskbarProgress, &QWinTaskbarProgress::setValue);
+    connect(ui->durationSlider, &QAbstractSlider::rangeChanged, taskbarProgress, &QWinTaskbarProgress::setRange);
 
-    connect(m_player, &QMediaPlayer::stateChanged, this, &Widget::updateTaskbar);
+    connect(player, &QMediaPlayer::stateChanged, this, &Widget::updateTaskbar);
 }
 
 void Widget::updateTaskbar()
 {
-    switch (m_player->state()) {
+    switch (player->state()) {
     case QMediaPlayer::PlayingState:
-        m_taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaPlay));
-        m_taskbarProgress->show();
-        m_taskbarProgress->resume();
+        taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+        taskbarProgress->show();
+        taskbarProgress->resume();
         break;
     case QMediaPlayer::PausedState:
-        m_taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaPause));
-        m_taskbarProgress->show();
-        m_taskbarProgress->pause();
+        taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaPause));
+        taskbarProgress->show();
+        taskbarProgress->pause();
         break;
     case QMediaPlayer::StoppedState:
-        m_taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaStop));
-        m_taskbarProgress->hide();
+        taskbarButton->setOverlayIcon(style()->standardIcon(QStyle::SP_MediaStop));
+        taskbarProgress->hide();
         break;
     }
 }
@@ -394,18 +448,18 @@ void Widget::createThumbnailToolBar()
     thumbnailToolBar->addButton(playToolButton);
     thumbnailToolBar->addButton(forwardToolButton);
 
-    connect(m_player, &QMediaPlayer::positionChanged, this, &Widget::updateThumbnailToolBar);
-    connect(m_player, &QMediaPlayer::durationChanged, this, &Widget::updateThumbnailToolBar);
-    connect(m_player, &QMediaPlayer::stateChanged, this, &Widget::updateThumbnailToolBar);
+    connect(player, &QMediaPlayer::positionChanged, this, &Widget::updateThumbnailToolBar);
+    connect(player, &QMediaPlayer::durationChanged, this, &Widget::updateThumbnailToolBar);
+    connect(player, &QMediaPlayer::stateChanged, this, &Widget::updateThumbnailToolBar);
 }
 
 void Widget::updateThumbnailToolBar()
 {
-    playToolButton->setEnabled(m_player->duration() > 0);
-    backwardToolButton->setEnabled(m_player->position() > 0);
-    forwardToolButton->setEnabled(m_player->position() < m_player->duration());
+    playToolButton->setEnabled(player->duration() > 0);
+    backwardToolButton->setEnabled(player->position() > 0);
+    forwardToolButton->setEnabled(player->position() < player->duration());
 
-    if (m_player->state() == QMediaPlayer::PlayingState) {
+    if (player->state() == QMediaPlayer::PlayingState) {
         playToolButton->setToolTip(tr("Pause"));
         playToolButton->setIcon(style()->standardIcon(QStyle::SP_MediaPause));
     } else {
@@ -413,50 +467,4 @@ void Widget::updateThumbnailToolBar()
         playToolButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
     }
 }
-
-void Widget::togglePlayback()
-{
-    if (m_player->state() == QMediaPlayer::PlayingState) {
-        m_player->pause();
-    } else {
-        m_player->play();
-    }
-}
-
-void Widget::seekForward()
-{
-    ui->positionSlider->triggerAction(QSlider::SliderPageStepAdd);
-}
-
-void Widget::seekBackward()
-{
-    ui->positionSlider->triggerAction(QSlider::SliderPageStepSub);
-}
-
-static QString formatTime(qint64 timeMilliSeconds)
-{
-    qint64 seconds = timeMilliSeconds / 1000;
-    const qint64 minutes = seconds / 60;
-    seconds -= minutes * 60;
-    return QStringLiteral("%1:%2").arg(minutes, 2, 10, QLatin1Char('0')).arg(seconds, 2, 10, QLatin1Char('0'));
-}
-
-void Widget::updatePosition(qint64 position)
-{
-    ui->positionSlider->setValue(position);
-    ui->positionLabel->setText(formatTime(position));
-}
-
-void Widget::updateDuration(qint64 duration)
-{
-    ui->positionSlider->setRange(0, duration);
-    ui->positionSlider->setEnabled(duration > 0);
-    ui->positionSlider->setPageStep(duration / 10);
-}
-
-void Widget::setPosition(int position)
-{
-    if (qAbs(m_player->position() - position) > 99) {
-        m_player->setPosition(position);
-    }
-}
+#endif
