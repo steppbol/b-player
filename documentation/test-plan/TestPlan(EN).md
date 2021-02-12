@@ -1,7 +1,7 @@
 ### Content
 1. [Introduction](#1)
 2. [Testing Object](#2)
-3. [Quality Attributes] (#3)
+3. [Quality Attributes](#3)
 4. [Risks](#4)
 5. [Testing Aspects](#5)<br>
 5.1. [Ability to start playing audio recordings](#001)<br>
@@ -12,8 +12,8 @@
 5.6. [Change the playback volume](#006)<br>
 5.7. [Ability to play the playlist again when it ends](#007)<br>
 5.8. [Playing audio recordings in different sequences](#008)<br>
-6. [Testing Approaches] (#6)
-7. [Presentation of Results] (#7)
+6. [Testing Approaches](#6)
+7. [Presentation of Results](#7)
 8. [Conclusions](#8)
 
 
