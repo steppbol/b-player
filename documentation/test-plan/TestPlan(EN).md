@@ -41,7 +41,7 @@ The application under test contains 1 module created to perform a certain functi
 <a name="3"></a>
 ### 3. Quality Attributes
 1. Functionality:
-- Functional completeness: The application must meet all the functional requirements stated in [SRS] (https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/SRS(EN).md);
+- Functional completeness: The application must meet all the functional requirements stated in [SRS](https://github.com/steppbol/B-Player/blob/master/docs/Project%20Documentation/SRS(EN).md);
 - functional feasibility: there are no non-declared functions that would prevent the application from performing the assigned tasks
 2. Ease of use:
 - Simple user interface: the interface should be simple enough for intuitive use by a new user.
