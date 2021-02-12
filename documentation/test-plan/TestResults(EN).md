@@ -1,8 +1,7 @@
 Script|Action|Expected result|Actual result| Rating|
 |:---|:---|:---|:---|:---|
 |001-1: Playing an audio recording that is not selected| Click on the "Play" button| The first audio recording in the playlist has started playing|The first audio recording in the playlist has started playing|Passed|
-|001-2: Plays the audio recording that is selected|Select an audio recording and click on the "Play" button|The selected audio recording has started playing|
-|The selected audio recording has started playing|Passed|
+|001-2: Plays the audio recording that is selected|Select an audio recording and click on the "Play" button|The selected audio recording has started playing|The selected audio recording has started playing|Passed|
 |002-1: Stop playing audio| Click on the Pause button when playing an audio record| Stop playback of the current audio|Stop playing the current audio recording|Passed|
 |003-1: Switch to the next audio recording| Click on the "Next" button |Switch to the next audio recording in the playlist|Switch to the next audio recording in the playlist|Passed|
 003-2: Switches to the next audio recording, with one audio recording in the playlist| Click on the "Next" button |There is no reaction|The app started playing the audio recording first|Failed to pass|
